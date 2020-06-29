@@ -1,58 +1,37 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-TYPE = (
-    ('Regular', 'Regular'),
-    ('Sicilian', 'Sicilian')
-)
-
-SIZE = (
-    ('Small', 'Small'),
-    ('Large', 'Large')
-)
-
-class pizza(models.Model):
-    type = models.CharField(choices=TYPE, max_length=15)
-    name = models.CharField(max_length=30)
-    size = models.CharField(choices=SIZE, max_length=10)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.type} - {self.name} - {self.size} - ${self.price}"
-
-class topping(models.Model):
-    name = models.CharField(max_length=30)
+class Tag(models.Model):
+    name = models.CharField(max_length=64, null=True)
 
     def __str__(self):
         return self.name
 
-class sub(models.Model):
-    name = models.CharField(max_length=30)
-    size = models.CharField(choices=SIZE, max_length=10)
+class Product(models.Model):
+    SIZE = (
+    ('Small', 'Small'),
+    ('Large', 'Large'),
+    )
+    tags = models.ForeignKey(Tag, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=64, null=True)
+    size = models.CharField(max_length=64, null=True, choices=SIZE, blank=True)
     price = models.DecimalField(max_digits=4, decimal_places=2)
 
     def __str__(self):
-        return f"{self.name} - {self.size} - ${self.price}"
+        return f"{self.tags} - {self.name} - {self.size} - {self.price}"
 
-class pasta(models.Model):
-    name = models.CharField(max_length=30)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.name} ${self.price}"
-
-class salad(models.Model):
-    name = models.CharField(max_length=30)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.name} ${self.price}"
-
-class DinnerPlatter(models.Model):
-    name = models.CharField(max_length=30)
-    size = models.CharField(choices=SIZE, max_length=10)
-    price = models.DecimalField(max_digits=4, decimal_places=2)
+class Order(models.Model):
+    STATUS = (
+        ('Pending', 'Pending'),
+        ('Out for delivery', 'Out for delivery'),
+        ('Delivered', 'Delivered'),
+    )
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    product = models.ManyToManyField(Product)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.CharField(max_length=64, null=True, choices=STATUS, default='Pending')
 
     def __str__(self):
-        return f"{self.name} - {self.size} - ${self.price}"
+        return f" Order Id: {self.id} - Customer: {self.customer} - Status: {self.status}"

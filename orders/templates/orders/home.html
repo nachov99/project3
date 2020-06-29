@@ -7,24 +7,25 @@
 {% block body%}
 
     <h1>Menu</h1>
-    <h3> {{ pizzas.type }} Pizza</h3>
+    <h3>Regular Pizza</h3>
     <table class="table table-sm">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Size</th>
-            <th scope="col">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for pizza in pizzas %}
-          <tr>
-            <th scope="row"> {{pizza.type}} {{ pizza.name }}</th>
-            <td>{{ pizza.size }}</td>
-            <td>${{ pizza.price }}<a href="#"><button type="button" class="btn btn-primary">Add</button></a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Regular Pizza" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
 {% endblock%}

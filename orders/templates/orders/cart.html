@@ -1,0 +1,30 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body%}
+    <h2>Order Summary</h2>
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Size</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                {% if order.customer.username == request.user%}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ order.product.all.name }}</td>
+                    <td>{{ order.product.all.size }}</td>
+                    <td>{{ order.product.all.price }}</td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+      </table>
+{% endblock%}
