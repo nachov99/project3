@@ -16,11 +16,14 @@
         </thead>
         <tbody>
             {% for order in orders %}
-                {% if order.customer.username == request.user%}
+                {% if order.customer == request.user%}
                 <tr>
-                    <th scope="row">1</th>
-                    <td>{{ order.product.all.name }}</td>
-                    <td>{{ order.product.all.size }}</td>
+                    <td>{{ order.customer }}</td>
+                    <td>
+                      {% for data in order.product.all %}
+                      <li>{{ data.tags }} {{ data.name }} {{ data.size }} ${{ data.price }}</li>
+                      {% endfor %}
+                    </td>
                     <td>{{ order.product.all.price }}</td>
                 </tr>
                 {% endif %}

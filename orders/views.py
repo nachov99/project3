@@ -69,12 +69,12 @@ def add(request, product_id):
     product, created = Product.objects.get_or_create(Product, pk=product_id)
     order, created = Order.objects.get_or_create(customer=request.user)
     order.product.add(product_id)
-    return render(request, "orders/cart.html")
+    return HttpResponseRedirect(reverse("home"))
 
 @login_required
 def cart(request):
     context = {
         "user": request.user,
-        'order': Order.objects.all(),
+        'orders': Order.objects.all(),
     }
     return render(request, 'orders/cart.html', context)
