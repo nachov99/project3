@@ -1,0 +1,19 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+    Order status
+{% endblock %}
+
+{% block body%}
+    <h1>Your order is initiated!</h1>
+    
+    {% for order in orders %}
+        {% if order.customer == request.user %}
+        <li>Order status: {{ order.status }}</li>
+        {% endif %}
+    {% endfor %}
+
+    <a href="{% url 'orderstatus' %}"><button type="button" class="btn btn-primary">Reload</button></a>
+    
+
+{% endblock%}

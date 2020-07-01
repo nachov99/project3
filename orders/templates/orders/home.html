@@ -28,4 +28,137 @@
         {% endfor %}
       </tbody>
     </table>
+
+    <h3>Sicilian Pizza</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Sicilian Pizza" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    
+    <h3>Toppings</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Toppings" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Subs</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Subs" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Pasta</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Pasta" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Salads</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Salads" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Dinner Platter</h3>
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Type</th>
+          <th scope="col">Size</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          {% if product.tags.name == "Dinner Platter" %}
+            <tr>
+              <th scope="row">{{product.name}}</th>
+              <td>{{ product.size }}</td>
+              <td>${{ product.price }} <a href="{% url 'add' product.id %}"><button type="button" class="btn btn-primary">Add</button></a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    
 {% endblock%}

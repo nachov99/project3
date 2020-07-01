@@ -11,4 +11,6 @@ urlpatterns = [
     #url(r'^order/add/(?P<product_id>[-\w]+)/$', views.add, name="add"),
     path("order/add/<product_id>", views.add, name="add"),
     path('cart', views.cart, name='cart' ),
+    path('initiateorder', views.initiateorder, name='initiateorder' ),
+    path('orderstatus', views.orderstatus, name='orderstatus' ),
 ]

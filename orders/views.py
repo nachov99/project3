@@ -78,3 +78,21 @@ def cart(request):
         'orders': Order.objects.all(),
     }
     return render(request, 'orders/cart.html', context)
+
+@login_required
+def initiateorder(request):
+    order, created = Order.objects.get_or_create(customer=request.user)
+    order.status = 'Initiated'
+    order.save()
+    context = {
+        'orders': Order.objects.all(),
+    }
+    return render(request, 'orders/orderstatus.html', context)
+
+@login_required
+def orderstatus(request):
+    order, created = Order.objects.get_or_create(customer=request.user)
+    context = {
+        'orders': Order.objects.all(),
+    }
+    return render(request, 'orders/orderstatus.html', context)

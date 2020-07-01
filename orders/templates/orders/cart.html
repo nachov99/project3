@@ -1,7 +1,7 @@
 {% extends "orders/base.html" %}
 
 {% block title %}
-    Home
+    Cart
 {% endblock %}
 
 {% block body%}
@@ -9,16 +9,13 @@
     <table class="table table-sm">
         <thead>
           <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Size</th>
-            <th scope="col">Price</th>
+            <th scope="col">Products</th>
           </tr>
         </thead>
         <tbody>
             {% for order in orders %}
-                {% if order.customer == request.user%}
+                {% if order.customer == request.user %}
                 <tr>
-                    <td>{{ order.customer }}</td>
                     <td>
                       {% for data in order.product.all %}
                       <li>{{ data.tags }} {{ data.name }} {{ data.size }} ${{ data.price }}</li>
@@ -30,4 +27,5 @@
             {% endfor %}
         </tbody>
       </table>
+      <a href="{% url 'initiateorder' %}"><button type="button" class="btn btn-success">Confirm</button></a>
 {% endblock%}
